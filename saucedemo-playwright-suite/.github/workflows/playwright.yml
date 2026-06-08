@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: |
+        run: |uses: actions/upload-artifact@v4
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -32,7 +32,7 @@ jobs:
           pytest tests/ -v --alluredir=allure-results
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: allure-results
