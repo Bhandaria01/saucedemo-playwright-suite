@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                bat 'pip install -r requirements.txt'
+            }
+        }
+        stage('Install Browsers') {
+            steps {
+                bat 'playwright install chromium'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                bat 'pytest tests/ -v --alluredir=allure-results'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline complete!'
+        }
+        success {
+            echo 'All tests passed!'
+        }
+        failure {
+            echo 'Tests failed!'
+        }
+    }
+}
