@@ -1,7 +1,5 @@
-@"
 pipeline {
     agent any
-
     stages {
         stage('Install Dependencies') {
             steps {
@@ -19,7 +17,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             echo 'Pipeline complete!'
@@ -32,4 +29,3 @@ pipeline {
         }
     }
 }
-"@ | Out-File -FilePath saucedemo-playwright-suite\Jenkinsfile -Encoding utf8
