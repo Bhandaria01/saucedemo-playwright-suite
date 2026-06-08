@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install -r saucedemo-playwright-suite/requirements.txt'
+                sh 'pip3 install -r saucedemo-playwright-suite/requirements.txt --break-system-packages'
             }
         }
         stage('Install Browsers') {
