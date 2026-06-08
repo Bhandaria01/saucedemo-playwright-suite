@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                sh 'pip3 install -r saucedemo-playwright-suite/requirements.txt'
             }
         }
         stage('Install Browsers') {
             steps {
-                bat 'playwright install chromium'
+                sh 'python3 -m playwright install chromium'
             }
         }
         stage('Run Tests') {
             steps {
-                bat 'pytest tests/ -v --alluredir=allure-results'
+                sh 'cd saucedemo-playwright-suite && python3 -m pytest tests/ -v --alluredir=allure-results'
             }
         }
     }
